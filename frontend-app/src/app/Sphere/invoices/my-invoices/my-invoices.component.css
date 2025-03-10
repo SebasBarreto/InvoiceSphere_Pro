@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  font-family: 'Space Mono', monospace;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 32px;
+  border: 1px solid #eee;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f8f8f8;
+}
+
+table td {
+  background-color: #fff;
+}
+
+table button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+table button:hover {
+  background-color: #e0e0e0;
+}
+
+/* -------------------------------------
+    OVERLAY STYLES
+------------------------------------- */
+.invoice-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.invoice-overlay-content {
+  background-color: white;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Title and section headers */
+h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* List of products */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* -------------------------------------
+    INVOICE OVERLAY STYLES
+------------------------------------- */
+.invoice-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.invoice-overlay-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 400;
+  text-align: center;
+}
+
+h4 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.invoice-overlay-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.invoice-items {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.invoice-items td {
+  padding: 5px 0;
+}
+
+.invoice-items .total td {
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  font-weight: 700;
+}
+
+.alignright {
+  text-align: right;
+}
+
+footer p {
+  text-align: center;
+  font-size: 12px;
+  color: #b0c2bf;
+  margin-top: 30px;
+}
+
+button {
+  background-color: #eeeeee;
+  color: #2cb5a0;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #68b8ab;
+  color: white;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+/* -------------------------------------
+    RESPONSIVE STYLES
+------------------------------------- */
+@media only screen and (max-width: 640px) {
+  .invoice-overlay-content {
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

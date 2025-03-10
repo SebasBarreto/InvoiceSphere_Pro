@@ -1,0 +1,89 @@
+<div class="invoices-container">
+  <h2>My Invoices</h2>
+
+  <!-- Sort by Price Button -->
+  <button (click)="sortInvoicesBy('total')">
+    Sort by Price ({{ sortDirection === 'asc' ? 'Ascending' : 'Descending' }})
+  </button>
+
+  <!-- Sort by Date Button -->
+  <button (click)="sortInvoicesBy('date')">
+    Sort by Date ({{ sortDirection === 'asc' ? 'Ascending' : 'Descending' }})
+  </button>
+
+  <!-- Display Message if No Invoices are Available -->
+  <div *ngIf="filteredInvoices.length === 0">
+    <p>No invoices available.</p>
+  </div>
+
+  <!-- Display the List of Invoices if Available -->
+  <table *ngIf="filteredInvoices.length > 0">
+    <thead>
+      <tr>
+        <th>Invoice Code</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of filteredInvoices">
+        <!-- Display Invoice Code -->
+        <td>{{ invoice.invoiceCode }}</td>
+        <!-- Display Total Price -->
+        <td>{{ invoice.total | currency }}</td>
+        <!-- Display Date using Angular Date Pipe -->
+        <td>{{ invoice.date | date: 'short' }}</td>
+        <!-- Button to View Invoice Details -->
+        <td>
+          <button (click)="openInvoiceDetails(invoice)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination for Invoice List -->
+  <div class="pagination">
+    <!-- Generate Pagination Buttons Dynamically -->
+    <button *ngFor="let page of [].constructor(totalPages); let i = index"
+            (click)="changePage(i + 1)">
+      {{ i + 1 }}
+    </button>
+  </div>
+
+  <!-- Modal Overlay for Viewing Invoice Details -->
+  <div *ngIf="selectedInvoice" class="invoice-overlay" (click)="closeInvoiceDetails()">
+    <!-- Prevent Closing when Clicking Inside Modal -->
+    <div class="invoice-overlay-content" (click)="$event.stopPropagation()">
+      <!-- Close Button -->
+      <button class="close-button" (click)="closeInvoiceDetails()">X</button>
+
+      <!-- Display Invoice Details -->
+      <h1>{{ selectedInvoice.total | currency }} Paid</h1>
+      <h2>Thanks for using Sphere Pro</h2>
+      <p><strong>Invoice Code:</strong> {{ selectedInvoice.invoiceCode }}</p>
+      <p><strong>Date:</strong> {{ selectedInvoice.date | date: 'short' }}</p>
+
+      <!-- Display Products in the Invoice -->
+      <h4>Products:</h4>
+      <table class="invoice-items">
+        <tr *ngFor="let product of selectedInvoice.products">
+          <td>{{ product.name }}</td>
+          <td class="alignright">{{ product.quantity }}</td> <!-- Quantity of the product -->
+          <td class="alignright">{{ product.price | currency }}</td> <!-- Price per unit -->
+          <td class="alignright">{{ (product.quantity * product.price) | currency }}</td> <!-- Total price per product -->
+        </tr>
+        <tr class="total">
+          <td class="alignright">Total</td>
+          <td class="alignright" colspan="2"></td> <!-- Empty space for alignment -->
+          <td class="alignright">{{ selectedInvoice.total | currency }}</td> <!-- Total amount for the invoice -->
+        </tr>
+      </table>
+
+      <!-- Footer for the Modal -->
+      <div class="footer">
+        <p>Sphere Pro, 2025</p>
+      </div>
+    </div>
+  </div>
+</div>

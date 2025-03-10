@@ -1,0 +1,158 @@
+/* General container that occupies the full screen */
+.dashboard-container {
+  height: 100vh;
+  background-color: #eee; /* Light grey background for the entire area */
+}
+
+/* SIDEBAR */
+.dashboard-sidebar {
+  width: 260px;
+  background: linear-gradient(60deg, #ffffff, #ffffff); /* White gradient for sidebar */
+  color: #000000;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Shadow on the right */
+}
+
+/* Sidebar header */
+.sidebar-header {
+  text-align: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar header (purple zone with title) */
+.sidebar-header {
+  background-color: #ffffff; /* Purple Material Dashboard style */
+  text-align: center;
+  color: #fff;
+  height: 100px;
+  margin-top: -20px;
+}
+
+.brand-image {
+  height: 120px; 
+}
+
+/* Sidebar navigation items */
+mat-nav-list a {
+  color: #444; /* Dark grey text */
+  font-weight: 500;
+  margin: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+mat-nav-list a mat-icon {
+  margin-right: 8px;
+  color: #2cb5a0; /* Purple icon */
+}
+
+/* Hover effect on sidebar items */
+mat-nav-list a:hover {
+  background-color: #eee;
+}
+
+/* Active item (uses routerLinkActive="active-link") */
+mat-nav-list a.active-link mat-icon {
+  color: #f2b300; /* White icon when active */
+}
+
+/* NAVBAR (top bar) */
+.dashboard-navbar {
+  background-color: #fff !important; /* White navbar */
+  box-shadow: none !important;       /* No shadow */
+  border: none !important;           /* No borders */
+  color: #999 !important;
+}
+
+.title {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444; /* Dark grey text */
+  text-transform: capitalize;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* MAIN CONTENT */
+.dashboard-content {
+  background: #fff; /* White background for content */
+  margin: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  min-height: calc(100vh - 64px); /* Adjust if the toolbar height changes */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow on content */
+}
+
+.brand {
+  margin: 0;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #d4da1d;
+  opacity: 0.9;
+}
+
+/* Sidebar list items */
+mat-nav-list a {
+  color: #000000;
+  font-weight: 500;
+  border-radius: 3px;
+  margin: 4px 8px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+mat-nav-list a mat-icon {
+  margin-right: 8px;
+}
+
+mat-nav-list a:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* Active item in the list (using routerLinkActive="active-link") */
+mat-nav-list a.active-link {
+  background-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+/* NAVBAR */
+.dashboard-navbar {
+  background-color: #eee !important; /* Light grey background */
+  color: #ee1212 !important;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  margin-top: 30px;
+}
+
+.search-field {
+  margin-right: 16px;
+  width: 200px;
+}
+
+/* MAIN CONTENT */
+.dashboard-content {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow */
+  min-height: calc(100vh - 64px);
+}

@@ -1,0 +1,38 @@
+<section class="container">
+  <!-- LOGO / TOP IMAGE -->
+  <div class="logo">
+    <img src="../../../../assets/spherepro.png" alt="My Logo" />
+  </div>
+
+  <!-- LOGIN BOX -->
+  <div class="login">
+    <h1>Products Here!</h1>
+    <div class="login-content">
+      <!-- Your Angular form -->
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <label id="emailLabel">Please enter a valid email</label>
+        <input
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Email"
+          required
+        />
+        <label id="passwordLabel">Please enter your password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Password"
+          required
+        />
+        <br />
+          <a routerLink="/register" class="login-link">Don't have an account? <span>Register</span></a>
+        <br />
+
+        <input type="submit" value="Login" [disabled]="!loginForm.form.valid" />
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+<div class="app-container">
+  <!-- Search bar for user ID -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      id="userIdSearch" 
+      [(ngModel)]="userId" 
+      placeholder="Search user by ID" 
+      (input)="getAnalytics()"
+      class="search-input"
+    />
+    <button (click)="getAnalytics()" class="search-button">Search</button>
+  </div>
+
+  <!-- User analytics container -->
+  <div class="analytics-container" *ngIf="!loading">
+    <h2>User Analytics for {{ userId || 'All Users' }}</h2> <!-- Shows 'All Users' if no user is searched -->
+
+    <div class="metrics">
+      <div class="metric">
+        <h3>Total Invoices Today</h3>
+        <p>{{ analyticsData.invoicesToday || '0' }}</p>
+      </div>
+
+      <div class="metric">
+        <h3>Total Users</h3>
+        <p>{{ analyticsData.userCount || '0' }}</p>
+      </div>
+
+      <div class="metric">
+        <h3>Total Admins</h3>
+        <p>{{ analyticsData.adminCount || '0' }}</p>
+      </div>
+
+      <div class="metric">
+        <h3>Active Products</h3>
+        <p>{{ analyticsData.activeProducts || '0' }}</p>
+      </div>
+
+      <div class="metric">
+        <h3>Inactive Products</h3>
+        <p>{{ analyticsData.inactiveProducts || '0' }}</p>
+      </div>
+
+      <div class="metric">
+        <h3>User Purchases (Last Month)</h3>
+        <p>{{ analyticsData.userAnalytics[0]?.count || '0' }}</p> <!-- Expects an array of purchase data -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading spinner -->
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Loading analytics...</p>
+  </div>
+</div>

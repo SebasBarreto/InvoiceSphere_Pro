@@ -1,0 +1,111 @@
+.card-client {
+  background: #424141;
+  width: 350px;
+  padding: 2rem;
+  border: 4px solid #7cdacc;
+  box-shadow: 0 6px 20px rgba(207, 212, 222, 0.15); /* Suavizado de la sombra */
+  border-radius: 12px; /* Bordes más redondeados */
+  text-align: center;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  margin: 2rem auto;
+}
+
+.user-picture {
+  overflow: hidden;
+  width: 80px; /* Ajuste más profesional en tamaño */
+  height: 80px; /* Ajuste más profesional en tamaño */
+  border: 4px solid #7cdacc;
+  border-radius: 50%; /* Redondeado perfecto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -50px auto 1rem auto;
+  background: rgb(110, 109, 109);
+}
+
+.user-picture svg {
+  width: 2.5rem;
+  fill: #2cb5a0; /* Colores más suaves para mejor contraste */
+}
+
+.user-profile h2 {
+  margin: 1rem 0;
+  color: #fff;
+  font-size: 26px; /* Aumento del tamaño del texto para mejor visibilidad */
+  font-weight: 600;
+}
+
+.form-group {
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 400; /* Ligero cambio para mayor claridad */
+  color: #bbb; /* Más suave para los labels */
+}
+
+.form-group input {
+  color: #fff;
+  width: 100%; /* Mejor uso del espacio */
+  padding: 0.8rem;
+  border: 2px solid #7cdacc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: rgb(110, 109, 109);
+  margin-top: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2cb5a0; /* Enfoque visual con color distinto */
+}
+
+button {
+  background: #7cdacc;
+  color: #2cb5a0;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+button:hover {
+  background: #68b8ab;
+  color: white;
+}
+
+button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+@media (max-width: 768px) {
+  .card-client {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .user-picture {
+    width: 70px; /* Ajuste del tamaño en dispositivos pequeños */
+    height: 70px;
+  }
+
+  .user-profile h2 {
+    font-size: 22px; /* Ajuste del tamaño del texto en pantallas pequeñas */
+  }
+
+  button {
+    font-size: 16px; /* Ajuste del tamaño del texto en botones */
+  }
+}

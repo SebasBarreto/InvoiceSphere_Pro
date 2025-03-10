@@ -1,0 +1,47 @@
+<section class="container">
+  <!-- LOGO / TOP IMAGE -->
+  <div class="logo">
+    <img src="../../../../assets/spherepro.png" alt="My Logo" />
+  </div>
+
+  <!-- REGISTER BOX -->
+  <div class="register">
+    <h1>Join Us!</h1>
+    <div class="register-content">
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <label id="nameLabel">Please enter your full name</label>
+        <input
+          id="name"
+          name="name"
+          [(ngModel)]="registerData.name"
+          placeholder="Full Name"
+          required
+        />
+
+        <label id="emailLabel">Please enter a valid email</label>
+        <input
+          id="email"
+          name="email"
+          [(ngModel)]="registerData.email"
+          placeholder="Email"
+          required
+        />
+
+        <label id="passwordLabel">Please enter your password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="registerData.password"
+          placeholder="Password"
+          required
+        />
+        <br />
+        <a routerLink="/login" class="login-link">Already have an account? <span>Login</span></a>
+        <br />
+
+        <input type="submit" value="Register" [disabled]="!registerForm.form.valid" />
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Rokkitt");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700");
+
+/* Optional: background image, etc. */
+body {
+  margin: 0;
+  padding: 0;
+  background: #eee; /* Or use your own background image */
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Main container */
+.container {
+  width: 400px;          /* Adjust the desired width */
+  margin: 5% auto;       /* Centers horizontally and gives top margin */
+  text-align: center;    /* Centers the content inside */
+}
+
+/* Top logo */
+.logo img {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;      /* Adjust image size */
+}
+
+/* Login box */
+.login {
+  background-color: #444;
+  text-align: center;
+  box-shadow: 0 0 20px #000;
+  margin-top: 30px;      /* Space between the image and the login box */
+}
+
+/* Login title */
+.login h1 {
+  color: #a64141;
+  font-size: 36px;
+  padding: 30px;
+  background-color: #d25555;
+}
+
+/* Login content */
+.login-content {
+  padding: 30px 30px 50px 30px;
+}
+
+.login-content label {
+  display: block;
+  color: #f4f4f4;
+  font-size: 18px;
+  margin-bottom: 3px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-content input {
+  margin-bottom: 15px;
+  padding: 10px 5px;
+  width: 80%;
+  background-color: #ccc;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+}
+
+.login-content input:focus {
+  background-color: #f4f4f4;
+  outline: none;
+}
+
+.login-content input[type="submit"] {
+  color: #fff;
+  background-color: #d25555;
+  border: none;
+  font-family: "Rokkitt", serif;
+  font-size: 24px;
+  margin-top: 25px;
+  width: 60%;
+  transition: all 0.5s ease;
+}
+
+.login-content input[type="submit"]:hover {
+  background-color: #a64141;
+  cursor: pointer;
+  color: #f4f4f4;
+}
+
+.login-content a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #ccc;
+  margin: 0 5px;
+}
+
+.login-link span {
+  color: #2970c2; /* Desired color */
+}

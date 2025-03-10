@@ -1,0 +1,89 @@
+<div class="invoices-container">
+  <h2>All Invoices</h2>
+
+  <!-- Show a message announcing that only the latest 50 invoices are displayed -->
+  <div class="announcement">
+    <p><strong>Attention!</strong> Only the latest 50 invoices are being displayed.</p>
+  </div>
+
+  <!-- Show a message if no invoices are available -->
+  <div *ngIf="filteredInvoices.length === 0">
+    <p>No invoices available.</p>
+  </div>
+
+  <!-- Search bar for invoiceCode -->
+  <input [(ngModel)]="searchQuery" (input)="filterInvoices()" placeholder="Search invoices by Invoice Code" />
+  
+  <!-- Search bar for user ID -->
+  <input [(ngModel)]="userSearchQuery" (input)="filterInvoices()" placeholder="Search invoices by User ID" />
+
+  <!-- Show the list of invoices if any exist -->
+  <table *ngIf="filteredInvoices.length > 0">
+    <thead>
+      <tr>
+        <th>Invoice Code</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of filteredInvoices">
+        <!-- Display the invoice code -->
+        <td>{{ invoice.invoiceCode }}</td>
+        <td>{{ invoice.total | currency }}</td>
+        <td>{{ invoice.date | date: 'short' }}</td>
+        <td>
+          <!-- Button to view the invoice details -->
+          <button (click)="openInvoiceModal(invoice)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal overlay to show invoice details -->
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeInvoiceModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()"> <!-- Prevent closing when clicked inside the modal -->
+      <button class="close-button" (click)="closeInvoiceModal()">X</button>
+
+      <!-- Invoice information -->
+      <h1>{{ selectedInvoice.total | currency }} Paid</h1>
+      <h2>Invoices - Sphere Pro</h2>
+      <p><strong>Invoice Code:</strong> {{ selectedInvoice.invoiceCode }}</p>
+      <p><strong>Date:</strong> {{ selectedInvoice.date | date: 'short' }}</p>
+
+      <!-- Buyer ID -->
+      <h5><strong>Buyer User ID:</strong> {{ selectedInvoice.user_id }}</h5>  <!-- Display the user ID of the buyer -->
+
+      <!-- Product details -->
+      <h4>Products:</h4>
+      <table class="invoice-items">
+        <tr *ngFor="let product of selectedInvoice.products">
+          <td>{{ product.name }}</td>
+          <td class="alignright">{{ product.quantity }}</td> <!-- Quantity -->
+          <td class="alignright">{{ product.price | currency }}</td>
+          <td class="alignright">{{ (product.quantity * product.price) | currency }}</td> <!-- Total per product -->
+        </tr>
+        <tr class="total">
+          <td class="alignright">Total</td>
+          <td class="alignright" colspan="2"></td> <!-- Empty space for total -->
+          <td class="alignright">{{ selectedInvoice.total | currency }}</td>
+        </tr>
+      </table>
+
+      <!-- Delete invoice button with unique class -->
+      <button class="delete-button" (click)="deleteInvoice(selectedInvoice._id)">Delete Invoice</button>
+
+      <!-- Footer with company info -->
+      <div class="footer">
+        <ul>
+          <li><strong>Copyright (c) 2025 Sebas Barreto</strong></li>
+          <li>All rights reserved.</li>
+          <li>This code is the property of <a href="https://github.com/SebasBarreto/InvoiceSphere_Pro" target="_blank">https://github.com/SebasBarreto/InvoiceSphere_Pro</a>.</li>
+          <li>No part of this code may be reproduced or used without the express permission of the copyright holder.</li>
+          <li>This code is licensed under the MIT License, which can be found at <a href="https://opensource.org/licenses/MIT" target="_blank">https://opensource.org/licenses/MIT</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

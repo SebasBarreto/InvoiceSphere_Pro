@@ -1,0 +1,103 @@
+<!-- Product List Page -->
+<div class="product-list">
+  <!-- Header -->
+  <div class="app-content-header">
+    <h1 class="app-content-headerText">Product List</h1>
+  </div>
+
+  <!-- Search Bar and Cart Button -->
+  <div class="app-content-actions">
+    <input [(ngModel)]="searchQuery" class="search-bar" placeholder="Search by product name..." type="text" (input)="filterProducts($event)">
+    <div class="cart-icon">
+      <button class="cart-button" (click)="toggleCart()">🛒 Cart ({{ cart.length }})</button>
+    </div>
+  </div>
+
+  <!-- Products Wrapper -->
+  <div class="products-area-wrapper">
+    <!-- Product Header -->
+    <div class="prod-header">
+      <div class="prod-cell">Items</div>
+      <div class="prod-cell">Description</div>
+      <div class="prod-cell">Status</div>
+      <div class="prod-cell">Stock</div>
+      <div class="prod-cell">Price</div>
+      <div class="prod-cell">Actions</div>
+    </div>
+
+    <div *ngFor="let product of paginatedProducts" class="prod-row">
+      <div class="prod-cell name">{{ product.name }}</div>
+      <div class="prod-cell description">
+        <div class="description-text">
+          {{ product.description }}
+        </div>
+      </div>
+      <div class="prod-cell status">
+        <span [ngClass]="{
+          'active': product.status === 'active',
+          'inactive': product.status === 'inactive'
+        }">
+          {{ product.status === 'active' ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+      <div class="prod-cell stock">{{ product.stock }}</div>
+      <div class="prod-cell price">${{ product.price }}</div>
+      <div class="prod-cell actions">
+        <button 
+          [disabled]="product.status === 'inactive' || product.stock === 0" 
+          [ngClass]="{ 'button-disabled': product.status === 'inactive' || product.stock === 0 }" 
+          (click)="addToCart(product)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="changePage(currentPage + 1)" [disabled]="(currentPage * itemsPerPage) >= filteredProducts.length">Next</button>
+  </div>
+
+  <!-- Cart Overlay -->
+  <div *ngIf="isCartVisible" class="cart-overlay" (click)="closeCart()">
+    <div class="cart-container" (click)="$event.stopPropagation()">
+      <button class="cart-overlay-close" (click)="closeCart()">X</button>
+      <div class="cart-header">Your Cart</div>
+
+      <!-- Invoice - Products -->
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of getCartSummary()">
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price | currency }}</td>
+            <td>
+              <button (click)="removeFromCart(item.product)">-</button>
+              {{ item.quantity }}
+              <button (click)="addToCart(item.product)">+</button>
+            </td>
+            <td>{{ (item.product.price * item.quantity) | currency }}</td>
+            <td>
+              <button (click)="removeFromCart(item.product)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Clear Cart Button -->
+      <button class="cart-button" (click)="clearCart()">Clear Cart</button>
+
+      <!-- Generate Invoice Button -->
+      <button class="cart-button" (click)="generateInvoice()">Generate Invoice</button>
+    </div>
+  </div>
+</div>

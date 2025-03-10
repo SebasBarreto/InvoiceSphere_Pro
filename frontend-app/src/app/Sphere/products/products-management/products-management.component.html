@@ -1,0 +1,138 @@
+<div class="product-management-list">
+  <!-- Filters and buttons -->
+  <div class="product-management-content-header">
+    <h1 class="product-management-content-headerText">Product Management</h1>
+    <div class="product-management-filters">
+      <div class="product-management-filter">
+        <label for="name">Product Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Search by product name"
+          [(ngModel)]="searchQuery"
+          (input)="filterProducts($event)"
+          class="product-management-search-input"
+        />
+      </div>
+      <div class="product-management-filter">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="statusFilter" (change)="applyFilters()" class="product-management-status-select">
+          <option value="todos">Select Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <button class="product-management-apply-filters" (click)="applyFilters()">Apply Filters</button>
+    </div>
+
+    <!-- Button to add product (Overlay) -->
+    <button class="product-management-add-product-btn" (click)="openAddProductOverlay()">Add Product</button>
+  </div>
+
+  <!-- Message if no results -->
+  <div *ngIf="filteredProducts.length === 0" class="product-management-no-results">
+    No products found.
+  </div>
+
+  <!-- Product list -->
+  <table class="product-management-list-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <span [ngClass]="{ 'active': product.status === 'active', 'inactive': product.status === 'inactive' }">
+            {{ product.status === 'active' ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+        <td>{{ product.stock }}</td>
+        <td>${{ product.price }}</td>
+        <td>
+          <!-- Buttons with colors (Edit and Delete) -->
+          <button class="product-management-list-edit-btn" (click)="selectProductToEdit(product)">Edit</button>
+          <button class="product-management-list-delete-btn" (click)="confirmDelete(product._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Overlay for editing product -->
+  <div *ngIf="selectedProduct" class="product-management-list-overlay">
+    <div class="product-management-edit-product-form">
+      <h3>Edit Product</h3>
+      <form (ngSubmit)="saveProduct()">
+        <div class="product-management-form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="selectedProduct.name" name="name" required />
+        </div>
+        <div class="product-management-form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" [(ngModel)]="selectedProduct.description" name="description" required></textarea>
+        </div>
+        <div class="product-management-form-group">
+          <label for="status">Status:</label>
+          <select id="status" [(ngModel)]="selectedProduct.status" name="status" required>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="product-management-form-group">
+          <label for="stock">Stock:</label>
+          <input type="number" id="stock" [(ngModel)]="selectedProduct.stock" name="stock" required />
+        </div>
+        <div class="product-management-form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" [(ngModel)]="selectedProduct.price" name="price" required />
+        </div>
+        <div class="product-management-form-actions">
+          <button type="submit" [disabled]="!selectedProduct.name || !selectedProduct.price || !selectedProduct.stock">Save Product</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Overlay for adding product -->
+  <div *ngIf="isAddProductOverlayVisible" class="product-management-list-overlay">
+    <div class="product-management-add-product-form">
+      <h3>Create Product</h3>
+      <div class="product-management-form-group">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" [(ngModel)]="newProduct.name" placeholder="Product name" required />
+      </div>
+      <div class="product-management-form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="newProduct.description" placeholder="Product description"></textarea>
+      </div>
+      <div class="product-management-form-group">
+        <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="newProduct.status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="product-management-form-group">
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" [(ngModel)]="newProduct.stock" placeholder="Product stock" />
+      </div>
+      <div class="product-management-form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="newProduct.price" placeholder="Product price" />
+      </div>
+      <div class="product-management-form-actions">
+        <button (click)="createProduct()">Create Product</button>
+        <button type="button" (click)="closeAddProductOverlay()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
